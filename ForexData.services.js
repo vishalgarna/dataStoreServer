@@ -45,9 +45,9 @@ async function addPair(params) {
                         ).catch((err) => console.log('error in 5 min data saving')
                         )
                 }
-                else {
+                else if (params.timeframe === '15m') {
 
-                    await ForexDataModel.updateOne({ symbol: params.symbol }, { $push: { data15: params.data } })
+                    await ForexDataModel.updateOne({ symbol: params.symbol }, { $push: { data15m: params.data } })
                         .catch((err) => console.log('error in 15 min data saving')
                         )
                 }

@@ -134,7 +134,6 @@ const WsConnection = () => {
 
     timeframes.forEach((timeframe) => {
         const interval = timeframe === "1m" ? 60 * 1000 : timeframe === "5m" ? 60 * 5 * 1000 : 15 * 60 * 1000;
-
         setInterval(() => saveohlcData(timeframe), interval)
     })
 

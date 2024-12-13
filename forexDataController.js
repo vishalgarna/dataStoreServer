@@ -4,9 +4,9 @@ exports.getData = (req, res, next) => {
 
     const parmas = {
 
-        "symbol": "",
-        "period": " ",
-        "timeInterval": ""
+        "symbol": req.body.symbol,
+        "period": req.body.period,
+        "timeInterval": req.body.timeInterval
     }
 
     forextDataservices.GetCloseData(parmas, (err, response) => {
