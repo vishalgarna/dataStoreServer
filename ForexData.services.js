@@ -65,22 +65,41 @@ async function addPair(params) {
 
 }
 
-async function GetCloseData(peiod, symbol) {
+async function GetCloseData(params, callback) {
     try {
-        const document = await ForexDataModel.findOne({ symbol: symbol })
+        const document = await ForexDataModel.findOne({ symbol: params.symbol })
         // console.log(document);
 
         if (document) {
-            const closeValues = document.data1m.map(item => item.close);
-            // slice - hume arr ko modified karke deta hai kha se kha tak ki value ho tab 
-            const modifiedData = closeValues.slice(-(peiod))
+            if (params.timeInterval === "1m") {
+                const closeValues = document.data1m.map(item => item.close);
+                // slice - hume arr ko modified karke deta hai kha se kha tak ki value ho tab 
+                const modifiedData = closeValues.slice(-(params.period || 50))
 
-            return modifiedData
+                return callback(null, modifiedData)
+            }
+            else if (params.timeInterval === "5m") {
+                const closeValues = document.data5m.map(item => item.close);
+                // slice - hume arr ko modified karke deta hai kha se kha tak ki value ho tab 
+                const modifiedData = closeValues.slice(-(params.period || 50))
+
+                return callback(null, modifiedData)
+            }
+            else {
+                const closeValues = document.data15m.map(item => item.close);
+                // slice - hume arr ko modified karke deta hai kha se kha tak ki value ho tab 
+                const modifiedData = closeValues.slice(-(params.period || 50))
+
+                return callback(null, modifiedData)
+            }
         } else {
+
+            return callback({ "error": "no dat is found " })
             console.log('No document found for the given symbol.');
         }
     } catch (error) {
-        console.error('Error fetching document:', error);
+
+        return callback({ "error": "no dat is found " })
     }
 }
 
