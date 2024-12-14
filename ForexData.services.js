@@ -153,7 +153,45 @@ async function addPair(params) {
                 else if (params.timeframe === '15m' && params.close != null) {
 
                     await ForexDataModel.updateOne({ symbol: params.symbol }, { $push: { data15m: params.data } })
+                        .then(() => console.log('updated 15 min data successsfully'))
                         .catch((err) => console.log('error in 15 min data saving')
+                        )
+                }
+
+                else if (params.timeframe === '30m' && params.close != null) {
+
+                    await ForexDataModel.updateOne({ symbol: params.symbol }, { $push: { data30m: params.data } })
+                        .then(() => console.log('updated 30 min data successsfully')
+                        ).catch((err) => console.log('error in 30 min data saving')
+                        )
+                }
+                else if (params.timeframe === '1h' && params.close != null) {
+
+                    await ForexDataModel.updateOne({ symbol: params.symbol }, { $push: { data1h: params.data } })
+                        .then(() => console.log('updated 1h min data successsfully'))
+                        .catch((err) => console.log('error in 1h min data saving')
+                        )
+                }
+                else if (params.timeframe === '2h' && params.close != null) {
+
+                    await ForexDataModel.updateOne({ symbol: params.symbol }, { $push: { data2h: params.data } })
+                        .then(() => console.log('updated 2h min data successsfully'))
+                        .catch((err) => console.log('error in 2h min data saving')
+                        )
+                }
+
+                else if (params.timeframe === '4h' && params.close != null) {
+
+                    await ForexDataModel.updateOne({ symbol: params.symbol }, { $push: { data4h: params.data } })
+                        .then(() => console.log('updated 4h min data successsfully')
+                        ).catch((err) => console.log('error in 4h min data saving')
+                        )
+                }
+                else if (params.timeframe === '1d' && params.close != null) {
+
+                    await ForexDataModel.updateOne({ symbol: params.symbol }, { $push: { data1d: params.data } })
+                        .then(() => console.log('updated 1d min data successsfully'))
+                        .catch((err) => console.log('error in 1d min data saving')
                         )
                 }
 
