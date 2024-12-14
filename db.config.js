@@ -13,7 +13,7 @@ db2.once('open', () => {
 // this list creating to add and remove multiple pairs and handle data 
 const currencyPairs = [
     "EURUSD", "USDJPY", "GBPUSD", "USDCHF", "NZDJPY",
-    "EURJPY", "GBPJPY", "DXY", "ADAUSD", "AUDUSD"
+    "EURJPY", "AUDJPY", "NZDJPY", "GBPJPY", "AUDUSD"
     //  "AUDJPY", "EURAUD", "EURCHF", "AUDNZD",
     //     "NZDJPY", "GBPAUD", "GBPCAD", "EURNZD", "AUDCAD", "GBPCHF", "AUDCHF",
     //     "EURCAD", "CADJPY", "GBPNZD", "CADCHF", "CHFJPY", "NZDCAD", "NZDCHF",
