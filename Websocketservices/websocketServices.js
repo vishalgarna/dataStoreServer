@@ -15,6 +15,23 @@ const { currencyPairs } = require('../db.config');
 
 const ohlcData = {};
 
+
+const chekTimeframe = (timeframe) => {
+    const timeMapping = {
+        "1m": 1,
+        "5m": 5,
+        "15m": 15,
+        "30m": 30,
+        "1h": 60,
+        "2h": 120,
+        "4h": 240,
+        "1d": 1440
+
+    };
+
+    return timeMapping[timeframe] ? timeMapping[timeframe] * 60 * 1000 : null;
+};
+
 currencyPairs.forEach((symbol) => {
 
     ohlcData[symbol] = {
@@ -36,7 +53,7 @@ const WsConnection = () => {
 
 
 
-    const timeframes = ["1m", "5m", "15m"]
+    const timeframes = ["1m", "5m", "15m", "30m", "1h", "2h", "4h", "1d"]
 
 
     // humne yaha har symbol ke liye ohlcdata intitliaze kardiya firstly 
@@ -133,7 +150,7 @@ const WsConnection = () => {
     }
 
     timeframes.forEach((timeframe) => {
-        const interval = timeframe === "1m" ? 60 * 1000 : timeframe === "5m" ? 60 * 5 * 1000 : 15 * 60 * 1000;
+        const interval = chekTimeframe(timeframe)
         setInterval(() => saveohlcData(timeframe), interval)
     })
 
